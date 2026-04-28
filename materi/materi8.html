@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 8 - Penutup</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            background: #020617;
+            overflow: hidden;
+        }
+
+        /* MAIN */
+        .slide {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            padding: 30px 22px 90px;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(59, 130, 246, .22), transparent 30%),
+                radial-gradient(circle at 85% 25%, rgba(168, 85, 247, .22), transparent 30%),
+                radial-gradient(circle at 50% 80%, rgba(34, 211, 238, .12), transparent 28%),
+                linear-gradient(135deg, #020617, #0f172a, #111827, #1e1b4b);
+        }
+
+        /* GRID */
+        .grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
+            background-size: 42px 42px;
+            animation: gridMove 12s linear infinite;
+            opacity: .45;
+        }
+
+        @keyframes gridMove {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(42px);
+            }
+        }
+
+        /* BLOBS */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: .38;
+            animation: floatBlob 9s ease-in-out infinite;
+        }
+
+        .b1 {
+            width: 280px;
+            height: 280px;
+            background: #3b82f6;
+            top: -80px;
+            left: -70px;
+        }
+
+        .b2 {
+            width: 260px;
+            height: 260px;
+            background: #8b5cf6;
+            right: -70px;
+            bottom: -50px;
+            animation-delay: 2s;
+        }
+
+        .b3 {
+            width: 220px;
+            height: 220px;
+            background: #22d3ee;
+            left: 45%;
+            top: 60%;
+            animation-delay: 4s;
+        }
+
+        @keyframes floatBlob {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(20px, -15px) scale(1.08);
+            }
+        }
+
+        /* PARTICLES */
+        .star {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 0 10px #fff;
+            opacity: .7;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        .star:nth-child(1) {
+            top: 12%;
+            left: 15%;
+        }
+
+        .star:nth-child(2) {
+            top: 28%;
+            left: 78%;
+            animation-delay: 1s;
+        }
+
+        .star:nth-child(3) {
+            top: 72%;
+            left: 22%;
+            animation-delay: 2s;
+        }
+
+        .star:nth-child(4) {
+            top: 58%;
+            left: 90%;
+            animation-delay: .5s;
+        }
+
+        .star:nth-child(5) {
+            top: 18%;
+            left: 55%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                transform: scale(.8);
+                opacity: .3;
+            }
+
+            50% {
+                transform: scale(1.8);
+                opacity: 1;
+            }
+        }
+
+        /* WRAPPER */
+        .wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 1280px;
+            margin: auto;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            backdrop-filter: blur(12px);
+        }
+
+        /* TOPBAR */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeDown .9s ease;
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* CONTENT */
+        .content {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .label {
+            color: #60a5fa;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .title {
+            font-size: 64px;
+            line-height: 1.05;
+            font-weight: 900;
+            color: #fff;
+            animation: fadeUp 1s ease;
+        }
+
+        .gradient {
+            background: linear-gradient(90deg, #60a5fa, #a855f7, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .line {
+            width: 220px;
+            height: 5px;
+            border-radius: 999px;
+            margin: 22px 0;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #22d3ee);
+            animation: pulseLine 2s infinite;
+        }
+
+        @keyframes pulseLine {
+
+            0%,
+            100% {
+                transform: scaleX(1);
+            }
+
+            50% {
+                transform: scaleX(1.08);
+            }
+        }
+
+        .quote {
+            font-size: 28px;
+            line-height: 1.55;
+            color: rgba(255, 255, 255, .92);
+            animation: fadeUp 1.2s ease;
+        }
+
+        .quote strong {
+            color: #fff;
+        }
+
+        .highlight {
+            margin-top: 28px;
+            padding: 22px;
+            border-radius: 24px;
+            font-size: 30px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.4;
+            animation: glowBox 2.5s infinite alternate;
+        }
+
+        .highlight span {
+            color: #22d3ee;
+        }
+
+        @keyframes glowBox {
+            from {
+                box-shadow: 0 0 0 rgba(34, 211, 238, .0);
+                transform: translateY(0);
+            }
+
+            to {
+                box-shadow: 0 0 28px rgba(34, 211, 238, .18);
+                transform: translateY(-4px);
+            }
+        }
+
+        /* VISUAL */
+        .visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 460px;
+        }
+
+        .ring {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: 50%;
+            animation: spin 18s linear infinite;
+        }
+
+        .r1 {
+            width: 340px;
+            height: 340px;
+        }
+
+        .r2 {
+            width: 250px;
+            height: 250px;
+            animation-direction: reverse;
+            animation-duration: 12s;
+        }
+
+        .r3 {
+            width: 160px;
+            height: 160px;
+            animation-duration: 8s;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .core {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(96, 165, 250, .35);
+            animation: pulseCore 2s infinite;
+        }
+
+        .core i {
+            font-size: 54px;
+            color: #fff;
+        }
+
+        @keyframes pulseCore {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        .floating-icon {
+            position: absolute;
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .1);
+            backdrop-filter: blur(8px);
+            animation: orbitFloat 4s ease-in-out infinite;
+        }
+
+        .i1 {
+            top: 10%;
+            left: 18%;
+        }
+
+        .i2 {
+            top: 22%;
+            right: 12%;
+            animation-delay: 1s;
+        }
+
+        .i3 {
+            bottom: 16%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .i4 {
+            bottom: 18%;
+            right: 18%;
+            animation-delay: 3s;
+        }
+
+        @keyframes orbitFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-14px);
+            }
+        }
+
+        /* BOTTOM */
+        .bottom {
+            margin-top: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeUp 1.4s ease;
+        }
+
+        .btns {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 14px 22px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .06);
+            color: #fff;
+            text-decoration: none;
+            transition: .25s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, .12);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* MOBILE */
+        @media(max-width:980px) {
+            .content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .title {
+                font-size: 44px;
+            }
+
+            .visual {
+                min-height: 360px;
+            }
+        }
+
+        @media(max-width:768px) {
+            .slide {
+                padding: 22px 16px 80px;
+            }
+
+            .topbar,
+            .bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .title {
+                font-size: 34px;
+            }
+
+            .quote {
+                font-size: 22px;
+            }
+
+            .highlight {
+                font-size: 24px;
+            }
+
+            .visual {
+                min-height: 300px;
+            }
+
+            .r1 {
+                width: 250px;
+                height: 250px;
+            }
+
+            .r2 {
+                width: 180px;
+                height: 180px;
+            }
+
+            .r3 {
+                width: 120px;
+                height: 120px;
+            }
+
+            .core {
+                width: 95px;
+                height: 95px;
+            }
+
+            .core i {
+                font-size: 38px;
+            }
+
+            .btns {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="slide">
+
+        <div class="grid"></div>
+
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="blob b3"></div>
+
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+
+        <div class="wrapper">
+
+            <!-- TOP -->
+            <div class="topbar">
+
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                        <i class="fas fa-flag-checkered text-blue-400 text-xl"></i>
+                    </div>
+
+                    <div>
+                        <div class="text-white font-semibold text-sm">AI Seminar 2026</div>
+                        <div class="text-white/50 text-xs">Slide 08 - Penutup</div>
+                    </div>
+                </div>
+
+                <div class="glass px-4 py-2 rounded-xl text-white/80 text-sm">
+                    <i class="fas fa-rocket mr-2 text-cyan-400"></i> Final Message
+                </div>
+
+            </div>
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <!-- LEFT -->
+                <div>
+
+                    <div class="label">Penutup</div>
+
+                    <h1 class="title">
+                        AI hanyalah <span class="gradient">alat</span>.
+                    </h1>
+
+                    <div class="line"></div>
+
+                    <div class="quote">
+                        Yang bikin karya keren tetap <strong>manusianya</strong>.<br><br>
+                        Teknologi membantu mempercepat proses, tapi ide, rasa, kreativitas, dan keberanian datang dari
+                        kamu.
+                    </div>
+
+                    <div class="glass highlight">
+                        Kalau kamu kreatif + bisa AI = <span>LEVEL UP 🚀</span>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT -->
+                <div class="visual">
+
+                    <div class="ring r1"></div>
+                    <div class="ring r2"></div>
+                    <div class="ring r3"></div>
+
+                    <div class="floating-icon i1"><i class="fas fa-lightbulb"></i></div>
+                    <div class="floating-icon i2"><i class="fas fa-brain"></i></div>
+                    <div class="floating-icon i3"><i class="fas fa-robot"></i></div>
+                    <div class="floating-icon i4"><i class="fas fa-star"></i></div>
+
+                    <div class="core">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- BOTTOM -->
+            <div class="bottom">
+
+                <div class="text-white/45 text-sm">
+                    Powered by AI Technology
+                </div>
+
+                <div class="btns">
+                    <a href="materi7.html" class="btn">
+                        <i class="fas fa-arrow-left mr-2"></i>Previous
+                    </a>
+
+                    <a href="materi9.html" class="btn">
+                        Finish <i class="fas fa-house ml-2"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
