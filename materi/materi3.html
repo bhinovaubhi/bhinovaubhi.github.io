@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 3 - Kenalan dengan AI Tools</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            background: #020617;
+            overflow-x: hidden;
+        }
+
+        /* ================= MAIN ================= */
+        .slide {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            padding: 28px 20px 90px;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(59, 130, 246, .22), transparent 30%),
+                radial-gradient(circle at 85% 25%, rgba(168, 85, 247, .20), transparent 30%),
+                radial-gradient(circle at 70% 80%, rgba(34, 211, 238, .10), transparent 25%),
+                linear-gradient(135deg, #020617, #0f172a, #111827, #1e1b4b);
+        }
+
+        /* ================= GRID ================= */
+        .grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
+            background-size: 42px 42px;
+            animation: gridMove 12s linear infinite;
+            opacity: .55;
+        }
+
+        @keyframes gridMove {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(42px);
+            }
+        }
+
+        /* ================= BLOBS ================= */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: .35;
+            animation: floatBlob 8s ease-in-out infinite;
+        }
+
+        .b1 {
+            width: 260px;
+            height: 260px;
+            background: #3b82f6;
+            top: -70px;
+            left: -70px;
+        }
+
+        .b2 {
+            width: 250px;
+            height: 250px;
+            background: #8b5cf6;
+            right: -60px;
+            bottom: -40px;
+            animation-delay: 2s;
+        }
+
+        .b3 {
+            width: 220px;
+            height: 220px;
+            background: #22d3ee;
+            top: 45%;
+            left: 45%;
+            animation-delay: 4s;
+        }
+
+        @keyframes floatBlob {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(25px, -15px) scale(1.08);
+            }
+        }
+
+        /* ================= AI PARTICLES ================= */
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #60a5fa;
+            box-shadow: 0 0 12px #60a5fa;
+            opacity: .8;
+            animation: particleMove linear infinite;
+        }
+
+        .particle:nth-child(1) {
+            top: 15%;
+            left: 12%;
+            animation-duration: 10s;
+        }
+
+        .particle:nth-child(2) {
+            top: 40%;
+            left: 78%;
+            animation-duration: 13s;
+            background: #22d3ee;
+        }
+
+        .particle:nth-child(3) {
+            top: 70%;
+            left: 25%;
+            animation-duration: 11s;
+            background: #a855f7;
+        }
+
+        .particle:nth-child(4) {
+            top: 55%;
+            left: 55%;
+            animation-duration: 14s;
+        }
+
+        .particle:nth-child(5) {
+            top: 20%;
+            left: 65%;
+            animation-duration: 9s;
+            background: #22d3ee;
+        }
+
+        @keyframes particleMove {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-35px) scale(1.5);
+            }
+
+            100% {
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ================= WRAPPER ================= */
+        .wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 1280px;
+            margin: auto;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            backdrop-filter: blur(12px);
+        }
+
+        /* ================= TOPBAR ================= */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeDown .9s ease;
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ================= TITLE ================= */
+        .title-wrap {
+            margin-top: 40px;
+            text-align: center;
+            animation: fadeUp 1s ease;
+        }
+
+        .label {
+            color: #60a5fa;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .title {
+            font-size: 60px;
+            line-height: 1.05;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .gradient {
+            background: linear-gradient(90deg, #60a5fa, #a855f7, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sub {
+            color: rgba(255, 255, 255, .65);
+            margin-top: 12px;
+            font-size: 18px;
+        }
+
+        .line {
+            width: 220px;
+            height: 5px;
+            border-radius: 999px;
+            margin: 20px auto 0;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #22d3ee);
+            animation: pulseLine 2s infinite;
+        }
+
+        @keyframes pulseLine {
+
+            0%,
+            100% {
+                transform: scaleX(1);
+            }
+
+            50% {
+                transform: scaleX(1.08);
+            }
+        }
+
+        /* ================= CARDS ================= */
+        .cards {
+            margin-top: 42px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            border-radius: 24px;
+            padding: 26px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            animation: riseUp .9s ease forwards;
+            transition: .3s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: .15s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        @keyframes riseUp {
+            from {
+                opacity: 0;
+                transform: translateY(45px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* shine effect */
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .12), transparent);
+            transform: skewX(-20deg);
+            animation: shine 5s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -120%;
+            }
+
+            60% {
+                left: 130%;
+            }
+
+            100% {
+                left: 130%;
+            }
+        }
+
+        .icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 18px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        .card h3 {
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .card small {
+            color: rgba(255, 255, 255, .65);
+            display: block;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .card li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            color: rgba(255, 255, 255, .92);
+            line-height: 1.45;
+        }
+
+        .card li i {
+            color: #22d3ee;
+            margin-top: 4px;
+            font-size: 12px;
+        }
+
+        /* themes */
+        .chatgpt {
+            background: linear-gradient(135deg, rgba(16, 185, 129, .28), rgba(5, 150, 105, .18));
+        }
+
+        .gemini {
+            background: linear-gradient(135deg, rgba(59, 130, 246, .28), rgba(139, 92, 246, .18));
+        }
+
+        .pippit {
+            background: linear-gradient(135deg, rgba(236, 72, 153, .25), rgba(249, 115, 22, .18));
+        }
+
+        .chatgpt .icon {
+            background: rgba(16, 185, 129, .18);
+            color: #34d399;
+        }
+
+        .gemini .icon {
+            background: rgba(59, 130, 246, .18);
+            color: #60a5fa;
+        }
+
+        .pippit .icon {
+            background: rgba(236, 72, 153, .18);
+            color: #f472b6;
+        }
+
+        /* ================= BOTTOM ================= */
+        .bottom {
+            margin-top: 45px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeUp 1.2s ease;
+        }
+
+        .btns {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 14px 22px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .06);
+            color: #fff;
+            text-decoration: none;
+            transition: .25s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, .12);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media(max-width:1100px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .title {
+                font-size: 48px;
+            }
+        }
+
+        @media(max-width:768px) {
+
+            .slide {
+                padding: 22px 16px 80px;
+            }
+
+            .topbar,
+            .bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .title {
+                font-size: 34px;
+            }
+
+            .sub {
+                font-size: 15px;
+            }
+
+            .card h3 {
+                font-size: 24px;
+            }
+
+            .btns {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="slide">
+
+        <div class="grid"></div>
+
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="blob b3"></div>
+
+        <!-- particles -->
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+
+        <div class="wrapper">
+
+            <!-- top -->
+            <div class="topbar">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                        <i class="fas fa-microchip text-blue-400 text-xl"></i>
+                    </div>
+
+                    <div>
+                        <div class="text-white font-semibold text-sm">AI Seminar 2026</div>
+                        <div class="text-white/50 text-xs">Slide 03 - AI Tools</div>
+                    </div>
+                </div>
+
+                <div class="glass px-4 py-2 rounded-xl text-white/80 text-sm">
+                    <i class="fas fa-wand-magic-sparkles mr-2 text-cyan-400"></i>
+                    Tools for Productivity
+                </div>
+            </div>
+
+            <!-- title -->
+            <div class="title-wrap">
+                <div class="label">Kenalan dengan AI Tools</div>
+
+                <h1 class="title">
+                    Kenalan dengan <span class="gradient">AI Tools</span>
+                </h1>
+
+                <div class="sub">3 alat populer untuk bantu kerja kreatif lebih cepat</div>
+                <div class="line"></div>
+            </div>
+
+            <!-- cards -->
+            <div class="cards">
+
+                <div class="glass card chatgpt">
+                    <div class="icon"><i class="fas fa-comment-dots"></i></div>
+                    <h3>ChatGPT</h3>
+                    <small>Untuk membuat ide & teks cepat</small>
+
+                    <ul>
+                        <li><i class="fas fa-circle-check"></i>bikin ide</li>
+                        <li><i class="fas fa-circle-check"></i>bikin caption</li>
+                        <li><i class="fas fa-circle-check"></i>bikin teks promosi</li>
+                        <li><i class="fas fa-circle-check"></i>bikin konsep poster</li>
+                        <li><i class="fas fa-circle-check"></i>bikin script video</li>
+                    </ul>
+                </div>
+
+                <div class="glass card gemini">
+                    <div class="icon"><i class="fas fa-gem"></i></div>
+                    <h3>Gemini</h3>
+                    <small>Untuk riset & brainstorming visual</small>
+
+                    <ul>
+                        <li><i class="fas fa-circle-check"></i>cari referensi visual</li>
+                        <li><i class="fas fa-circle-check"></i>bantu desain prompt gambar</li>
+                        <li><i class="fas fa-circle-check"></i>brainstorming ide kreatif</li>
+                    </ul>
+                </div>
+
+                <div class="glass card pippit">
+                    <div class="icon"><i class="fas fa-video"></i></div>
+                    <h3>Pippit AI</h3>
+                    <small>Untuk video otomatis & sosial media</small>
+
+                    <ul>
+                        <li><i class="fas fa-circle-check"></i>bikin video promosi otomatis</li>
+                        <li><i class="fas fa-circle-check"></i>video produk</li>
+                        <li><i class="fas fa-circle-check"></i>reels / tiktok</li>
+                        <li><i class="fas fa-circle-check"></i>animasi dari gambar & teks</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- bottom -->
+            <div class="bottom">
+
+                <div class="text-white/45 text-sm">
+                    Powered by AI Technology
+                </div>
+
+                <div class="btns">
+                    <a href="materi2.html" class="btn">
+                        <i class="fas fa-arrow-left mr-2"></i>Previous
+                    </a>
+
+                    <a href="materi4.html" class="btn">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

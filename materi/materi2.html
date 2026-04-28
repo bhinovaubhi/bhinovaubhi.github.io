@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 2 - Dunia Sudah Berubah</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            background: #020617;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            padding: 30px 20px 90px;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, .25), transparent 30%),
+                radial-gradient(circle at 90% 25%, rgba(168, 85, 247, .22), transparent 30%),
+                radial-gradient(circle at 70% 80%, rgba(34, 211, 238, .12), transparent 25%),
+                linear-gradient(135deg, #020617, #0f172a, #111827, #1e1b4b);
+        }
+
+        /* animated grid */
+        .grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
+            background-size: 42px 42px;
+            animation: gridMove 12s linear infinite;
+            opacity: .55;
+        }
+
+        @keyframes gridMove {
+            from {
+                transform: translateY(0)
+            }
+
+            to {
+                transform: translateY(42px)
+            }
+        }
+
+        /* glow blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: .4;
+            animation: floatBlob 8s ease-in-out infinite;
+        }
+
+        .b1 {
+            width: 280px;
+            height: 280px;
+            background: #3b82f6;
+            top: -80px;
+            left: -70px;
+        }
+
+        .b2 {
+            width: 260px;
+            height: 260px;
+            background: #8b5cf6;
+            right: -60px;
+            bottom: -40px;
+            animation-delay: 2s;
+        }
+
+        @keyframes floatBlob {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(20px, -15px) scale(1.08);
+            }
+        }
+
+        /* AI particles */
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #60a5fa;
+            box-shadow: 0 0 14px #60a5fa;
+            opacity: .7;
+            animation: moveParticle linear infinite;
+        }
+
+        .p1 {
+            left: 12%;
+            top: 80%;
+            animation-duration: 9s;
+        }
+
+        .p2 {
+            left: 82%;
+            top: 75%;
+            background: #a855f7;
+            box-shadow: 0 0 14px #a855f7;
+            animation-duration: 12s;
+        }
+
+        .p3 {
+            left: 65%;
+            top: 88%;
+            background: #22d3ee;
+            box-shadow: 0 0 14px #22d3ee;
+            animation-duration: 10s;
+        }
+
+        @keyframes moveParticle {
+            from {
+                transform: translateY(0) scale(1);
+                opacity: .1;
+            }
+
+            30% {
+                opacity: .8;
+            }
+
+            to {
+                transform: translateY(-700px) scale(1.6);
+                opacity: 0;
+            }
+        }
+
+        /* topbar */
+        .topbar {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeDown 1s ease;
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            backdrop-filter: blur(12px);
+        }
+
+        .wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .label {
+            color: #60a5fa;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            animation: fadeUp .8s ease;
+        }
+
+        .title {
+            font-size: 64px;
+            line-height: 1.05;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 22px;
+            animation: fadeUp 1s ease;
+        }
+
+        .gradient {
+            background: linear-gradient(90deg, #60a5fa, #a855f7, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .line {
+            width: 220px;
+            height: 5px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #22d3ee);
+            margin-bottom: 28px;
+            animation: pulseLine 2s infinite;
+        }
+
+        @keyframes pulseLine {
+
+            0%,
+            100% {
+                transform: scaleX(1);
+                opacity: .8;
+            }
+
+            50% {
+                transform: scaleX(1.08);
+                opacity: 1;
+            }
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .item {
+            padding: 18px 20px;
+            border-radius: 18px;
+            color: #fff;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            animation: slideLeft .8s ease forwards;
+        }
+
+        .item:nth-child(2) {
+            animation-delay: .15s;
+        }
+
+        .item:nth-child(3) {
+            animation-delay: .3s;
+        }
+
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .item i {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(59, 130, 246, .18);
+            color: #60a5fa;
+            animation: iconPulse 2s infinite;
+        }
+
+        @keyframes iconPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        .quote-box {
+            padding: 35px;
+            border-radius: 26px;
+            position: relative;
+            animation: zoomIn 1s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(.85);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .quote {
+            font-size: 34px;
+            line-height: 1.35;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .quote span {
+            color: #60a5fa;
+        }
+
+        .sub {
+            margin-top: 18px;
+            color: rgba(255, 255, 255, .65);
+            font-size: 16px;
+        }
+
+        .globe {
+            width: 230px;
+            height: 230px;
+            margin: 0 auto 28px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .18);
+            position: relative;
+            animation: spin 18s linear infinite;
+        }
+
+        .globe::before,
+        .globe::after {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border-radius: 50%;
+            border: 1px solid rgba(96, 165, 250, .25);
+        }
+
+        .globe::after {
+            inset: 45px;
+            border-color: rgba(168, 85, 247, .25);
+        }
+
+        .globe i {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            color: #60a5fa;
+            animation: glowPulse 2s infinite;
+        }
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 10px #60a5fa;
+            }
+
+            50% {
+                transform: scale(1.12);
+                text-shadow: 0 0 25px #60a5fa;
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0)
+            }
+
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .bottom {
+            position: relative;
+            z-index: 2;
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            animation: fadeUp 1.2s ease;
+        }
+
+        .btns {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 14px 22px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .06);
+            color: #fff;
+            cursor: pointer;
+            text-decoration: none;
+            transition: .25s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, .12);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* responsive */
+        @media(max-width:992px) {
+            .title {
+                font-size: 52px;
+            }
+
+            .quote {
+                font-size: 28px;
+            }
+        }
+
+        @media(max-width:768px) {
+            .content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .title {
+                font-size: 34px;
+            }
+
+            .item {
+                font-size: 16px;
+            }
+
+            .quote {
+                font-size: 24px;
+            }
+
+            .globe {
+                width: 180px;
+                height: 180px;
+            }
+
+            .topbar,
+            .bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .btns {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="slide">
+
+        <div class="grid"></div>
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+
+        <!-- particles -->
+        <div class="particle p1"></div>
+        <div class="particle p2"></div>
+        <div class="particle p3"></div>
+
+        <div class="wrapper">
+
+            <!-- top -->
+            <div class="topbar">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                        <i class="fas fa-globe text-blue-400 text-xl"></i>
+                    </div>
+
+                    <div>
+                        <div class="text-white font-semibold text-sm">AI Seminar 2026</div>
+                        <div class="text-white/50 text-xs">Slide 02 - Pembuka</div>
+                    </div>
+                </div>
+
+                <div class="glass px-4 py-2 rounded-xl text-white/80 text-sm">
+                    <i class="fas fa-bolt mr-2 text-yellow-400"></i> Future is Now
+                </div>
+            </div>
+
+            <!-- content -->
+            <div class="content">
+
+                <div>
+                    <div class="label">Pembuka</div>
+
+                    <h1 class="title">
+                        Dunia Sudah <span class="gradient">Berubah</span> 🌍
+                    </h1>
+
+                    <div class="line"></div>
+
+                    <div class="list">
+                        <div class="glass item">
+                            <i class="fas fa-mobile-screen"></i>
+                            Sekarang serba digital
+                        </div>
+
+                        <div class="glass item">
+                            <i class="fas fa-photo-film"></i>
+                            Konten jadi kebutuhan utama
+                        </div>
+
+                        <div class="glass item">
+                            <i class="fas fa-robot"></i>
+                            AI hadir membantu pekerjaan kreatif
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="glass quote-box">
+
+                        <div class="globe">
+                            <i class="fas fa-earth-asia"></i>
+                        </div>
+
+                        <div class="quote">
+                            Siapa cepat belajar <span>AI</span>,<br>
+                            dia unggul.
+                        </div>
+
+                        <div class="sub">
+                            Adaptasi lebih cepat = peluang lebih besar.
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- bottom -->
+            <div class="bottom">
+
+                <div class="text-white/45 text-sm">
+                    Powered by AI Technology
+                </div>
+
+                <div class="btns">
+                    <a href="materi1.html" class="btn">
+                        <i class="fas fa-arrow-left mr-2"></i>Previous
+                    </a>
+
+                    <a href="materi3.html" class="btn">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

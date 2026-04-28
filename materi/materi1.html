@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upgrade Skill: Ciptakan Karya Kreatif dan Keren dengan AI</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #020617;
+            font-family: Inter, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* slide responsive */
+        .slide {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden;
+            padding: 30px 20px 100px;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(59, 130, 246, .25), transparent 30%),
+                radial-gradient(circle at 85% 70%, rgba(168, 85, 247, .25), transparent 30%),
+                radial-gradient(circle at 70% 20%, rgba(16, 185, 129, .15), transparent 25%),
+                linear-gradient(135deg, #020617, #0f172a, #111827, #1e1b4b);
+        }
+
+        /* animated grid */
+        .grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: gridMove 12s linear infinite;
+            opacity: .55;
+        }
+
+        @keyframes gridMove {
+            from {
+                transform: translateY(0)
+            }
+
+            to {
+                transform: translateY(40px)
+            }
+        }
+
+        /* blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: .45;
+        }
+
+        .blob1 {
+            width: 300px;
+            height: 300px;
+            background: #3b82f6;
+            top: -80px;
+            left: -80px;
+        }
+
+        .blob2 {
+            width: 260px;
+            height: 260px;
+            background: #8b5cf6;
+            right: -70px;
+            bottom: -50px;
+        }
+
+        .blob3 {
+            width: 220px;
+            height: 220px;
+            background: #14b8a6;
+            top: 220px;
+            right: 240px;
+        }
+
+        /* ai lines */
+        .ai-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .line {
+            stroke: rgba(96, 165, 250, .22);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .node {
+            fill: #60a5fa;
+            filter: drop-shadow(0 0 8px #60a5fa);
+            animation: pulse 2s infinite;
+        }
+
+        .node2 {
+            fill: #a855f7;
+            filter: drop-shadow(0 0 8px #a855f7);
+            animation: pulse 2s infinite .8s;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: .45;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.3)
+            }
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            backdrop-filter: blur(10px);
+        }
+
+        .title-gradient {
+            background: linear-gradient(90deg, #60a5fa, #a855f7, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* layout */
+        .wrap {
+            position: relative;
+            z-index: 2;
+            max-width: 1280px;
+            margin: auto;
+        }
+
+        .topbar,
+        .bottomnav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .main {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .orbit {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            margin: auto;
+        }
+
+        .ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .18);
+            animation: spin 18s linear infinite;
+        }
+
+        .ring:nth-child(2) {
+            inset: 30px;
+            animation-duration: 12s;
+            animation-direction: reverse;
+        }
+
+        .ring:nth-child(3) {
+            inset: 60px;
+            animation-duration: 8s;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0)
+            }
+
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .btn-nav {
+            padding: 14px 22px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: #fff;
+            transition: .25s;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, .14);
+        }
+
+        /* tablet */
+        @media(max-width:1024px) {
+            .main {
+                grid-template-columns: 1fr;
+            }
+
+            .orbit {
+                width: 220px;
+                height: 220px;
+            }
+        }
+
+        /* mobile */
+        @media(max-width:768px) {
+
+            .slide {
+                padding: 20px 15px 90px;
+            }
+
+            .topbar,
+            .bottomnav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .main {
+                margin-top: 30px;
+                gap: 28px;
+            }
+
+            .title {
+                font-size: 34px !important;
+                line-height: 1.2;
+            }
+
+            .desc {
+                font-size: 16px !important;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .orbit {
+                width: 180px;
+                height: 180px;
+            }
+
+            .ring:nth-child(2) {
+                inset: 22px;
+            }
+
+            .ring:nth-child(3) {
+                inset: 44px;
+            }
+
+            .action {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .btn-nav {
+                width: 100%;
+                text-align: center;
+            }
+
+            .blob1,
+            .blob2,
+            .blob3 {
+                opacity: .35;
+            }
+        }
+
+        /* extra small */
+        @media(max-width:480px) {
+            .title {
+                font-size: 28px !important;
+            }
+
+            .badge {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="slide">
+
+        <div class="grid"></div>
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+
+        <!-- AI network tetap aktif -->
+        <svg class="ai-svg" viewBox="0 0 1280 720" preserveAspectRatio="none">
+            <path class="line" d="M900 80 L1080 170 L1030 320 L1170 430 L980 610" />
+            <path class="line" d="M820 150 L1020 250 L930 430 L1100 520" />
+            <path class="line" d="M720 240 L930 320 L860 500" />
+            <circle class="node" cx="900" cy="80" r="6" />
+            <circle class="node2" cx="1080" cy="170" r="7" />
+            <circle class="node" cx="1030" cy="320" r="6" />
+            <circle class="node2" cx="1170" cy="430" r="7" />
+            <circle class="node" cx="980" cy="610" r="6" />
+            <circle class="node2" cx="820" cy="150" r="7" />
+            <circle class="node" cx="930" cy="430" r="6" />
+        </svg>
+
+        <div class="wrap">
+
+            <!-- top -->
+            <div class="topbar">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                        <i class="fas fa-robot text-blue-400 text-xl"></i>
+                    </div>
+
+                    <div>
+                        <div class="text-white font-semibold text-sm">AI Seminar 2026</div>
+                        <div class="text-white/50 text-xs">Digital Creative Workshop</div>
+                    </div>
+                </div>
+
+                <div class="glass px-4 py-2 rounded-xl text-white/80 text-sm badge">
+                    <i class="fas fa-signal mr-2 text-green-400"></i>LIVE SESSION
+                </div>
+            </div>
+
+            <!-- content -->
+            <div class="main">
+
+                <div>
+                    <div class="text-blue-400 tracking-[4px] text-sm font-bold mb-4 uppercase">
+                        Upgrade Skill
+                    </div>
+
+                    <h1 class="title text-6xl font-black text-white">
+                        <span class="title-gradient">Upgrade Skill:</span><br>
+                        Ciptakan Karya Kreatif<br>
+                        <span class="text-white/90">dan Keren dengan AI</span>
+                    </h1>
+
+                    <div
+                        class="h-1 w-64 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 rounded-full mt-7 mb-7">
+                    </div>
+
+                    <p class="desc text-white/70 text-xl leading-relaxed mb-8">
+                        Pelajari cara membuat poster, konten, dan video profesional
+                        menggunakan teknologi AI modern. Dari ide hingga hasil jadi
+                        dalam hitungan menit.
+                    </p>
+
+                    <div class="cards">
+                        <div class="glass rounded-2xl px-5 py-4">
+                            <div class="text-white/50 text-xs mb-1">Pemateri</div>
+                            <div class="text-white font-bold">Joko Iskandar, M.Kom.</div>
+                        </div>
+
+                        <div class="glass rounded-2xl px-5 py-4">
+                            <div class="text-white/50 text-xs mb-1">Format</div>
+                            <div class="text-white font-bold">Seminar Digital</div>
+                        </div>
+
+                        <div class="glass rounded-2xl px-5 py-4">
+                            <div class="text-white/50 text-xs mb-1">Slide</div>
+                            <div class="text-white font-bold">01 / 15</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ai orbit -->
+                <div class="orbit">
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div
+                            class="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-2xl">
+                            <i class="fas fa-brain text-white text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- bottom -->
+            <div class="bottomnav mt-10">
+                <div class="text-white/45 text-sm">
+                    Powered by AI Technology
+                </div>
+
+                <div class="action flex gap-3">
+
+
+                    <a href="materi2.html" class="btn-nav inline-block">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
