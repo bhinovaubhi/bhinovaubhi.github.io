@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 5 - Hasil Poster AI</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            background: #020617;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            padding: 28px 20px 90px;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(59, 130, 246, .22), transparent 30%),
+                radial-gradient(circle at 85% 25%, rgba(168, 85, 247, .20), transparent 30%),
+                radial-gradient(circle at 70% 80%, rgba(34, 211, 238, .10), transparent 25%),
+                linear-gradient(135deg, #020617, #0f172a, #111827, #1e1b4b);
+        }
+
+        /* GRID */
+        .grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
+            background-size: 42px 42px;
+            animation: gridMove 12s linear infinite;
+            opacity: .55;
+        }
+
+        @keyframes gridMove {
+            from {
+                transform: translateY(0)
+            }
+
+            to {
+                transform: translateY(42px)
+            }
+        }
+
+        /* BLOBS */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: .35;
+            animation: floatBlob 8s ease-in-out infinite;
+        }
+
+        .b1 {
+            width: 260px;
+            height: 260px;
+            background: #3b82f6;
+            top: -70px;
+            left: -70px;
+        }
+
+        .b2 {
+            width: 250px;
+            height: 250px;
+            background: #8b5cf6;
+            right: -60px;
+            bottom: -40px;
+            animation-delay: 2s;
+        }
+
+        .b3 {
+            width: 220px;
+            height: 220px;
+            background: #22d3ee;
+            top: 45%;
+            left: 45%;
+            animation-delay: 4s;
+        }
+
+        @keyframes floatBlob {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1)
+            }
+
+            50% {
+                transform: translate(20px, -15px) scale(1.08)
+            }
+        }
+
+        /* PARTICLES */
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #60a5fa;
+            box-shadow: 0 0 12px #60a5fa;
+            opacity: .65;
+            animation: floatUp 12s linear infinite;
+        }
+
+        .particle:nth-child(1) {
+            left: 10%;
+            bottom: -20px;
+            animation-delay: 0s
+        }
+
+        .particle:nth-child(2) {
+            left: 28%;
+            bottom: -20px;
+            animation-delay: 2s
+        }
+
+        .particle:nth-child(3) {
+            left: 46%;
+            bottom: -20px;
+            animation-delay: 4s
+        }
+
+        .particle:nth-child(4) {
+            left: 64%;
+            bottom: -20px;
+            animation-delay: 1s
+        }
+
+        .particle:nth-child(5) {
+            left: 82%;
+            bottom: -20px;
+            animation-delay: 3s
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(.6);
+                opacity: 0
+            }
+
+            15% {
+                opacity: .7
+            }
+
+            100% {
+                transform: translateY(-110vh) scale(1.4);
+                opacity: 0
+            }
+        }
+
+        .wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 1350px;
+            margin: auto;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            backdrop-filter: blur(12px);
+        }
+
+        /* TOPBAR */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeDown .9s ease;
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* TITLE */
+        .title-wrap {
+            margin-top: 36px;
+            text-align: center;
+            animation: fadeUp 1s ease;
+        }
+
+        .label {
+            color: #60a5fa;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .title {
+            font-size: 56px;
+            line-height: 1.05;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .gradient {
+            background: linear-gradient(90deg, #60a5fa, #a855f7, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sub {
+            color: rgba(255, 255, 255, .65);
+            margin-top: 12px;
+            font-size: 18px;
+        }
+
+        .line {
+            width: 220px;
+            height: 5px;
+            border-radius: 999px;
+            margin: 20px auto 0;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #22d3ee);
+            animation: pulseLine 2s infinite;
+        }
+
+        @keyframes pulseLine {
+
+            0%,
+            100% {
+                transform: scaleX(1);
+                opacity: .8
+            }
+
+            50% {
+                transform: scaleX(1.08);
+                opacity: 1
+            }
+        }
+
+        /* POSTER GRID */
+        .posters {
+            margin-top: 38px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 26px;
+        }
+
+        .poster {
+            padding: 20px;
+            border-radius: 24px;
+            animation: riseUp .9s ease forwards;
+            transition: .25s;
+        }
+
+        .poster:nth-child(2) {
+            animation-delay: .15s
+        }
+
+        .poster:hover {
+            transform: translateY(-8px);
+        }
+
+        @keyframes riseUp {
+            from {
+                opacity: 0;
+                transform: translateY(45px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .poster-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .poster h3 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .tag {
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .chatgpt-tag {
+            background: rgba(16, 185, 129, .18);
+            color: #34d399;
+        }
+
+        .gemini-tag {
+            background: rgba(59, 130, 246, .18);
+            color: #60a5fa;
+        }
+
+        .preview {
+            height: 560px;
+            border-radius: 22px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: linear-gradient(135deg, #0f172a, #111827);
+
+            /* supaya gambar full kelihatan */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+        }
+
+        .preview img {
+            width: 100%;
+            height: 100%;
+
+            /* penting: jangan crop */
+            object-fit: contain;
+            object-position: center;
+
+            display: block;
+            border-radius: 16px;
+
+            animation: zoomIn 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(1)
+            }
+
+            to {
+                transform: scale(1.05)
+            }
+        }
+
+        .placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            color: #fff;
+            font-size: 18px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .placeholder i {
+            font-size: 68px;
+            opacity: .8;
+        }
+
+        /* BOTTOM */
+        .bottom {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeUp 1.2s ease;
+        }
+
+        .btns {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 14px 22px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .06);
+            color: #fff;
+            text-decoration: none;
+            transition: .25s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, .12);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(35px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:1100px) {
+            .posters {
+                grid-template-columns: 1fr;
+            }
+
+            .title {
+                font-size: 42px;
+            }
+        }
+
+        @media(max-width:768px) {
+            .slide {
+                padding: 22px 16px 80px;
+            }
+
+            .topbar,
+            .bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .title {
+                font-size: 32px;
+            }
+
+            .sub {
+                font-size: 15px;
+            }
+
+            .preview {
+                height: 420px;
+            }
+
+            .btns {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="slide">
+
+        <div class="grid"></div>
+
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="blob b3"></div>
+
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+
+        <div class="wrapper">
+
+            <!-- TOP -->
+            <div class="topbar">
+
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                        <i class="fas fa-image text-blue-400 text-xl"></i>
+                    </div>
+
+                    <div>
+                        <div class="text-white font-semibold text-sm">AI Seminar 2026</div>
+                        <div class="text-white/50 text-xs">Slide 05 - Hasil Poster AI</div>
+                    </div>
+                </div>
+
+                <div class="glass px-4 py-2 rounded-xl text-white/80 text-sm">
+                    <i class="fas fa-sparkles mr-2 text-cyan-400"></i> AI Generated Result
+                </div>
+
+            </div>
+
+            <!-- TITLE -->
+            <div class="title-wrap">
+                <div class="label">Hasil Praktik</div>
+
+                <h1 class="title">
+                    Poster dari <span class="gradient">ChatGPT & Gemini</span>
+                </h1>
+
+                <div class="sub">Bandingkan hasil desain dari dua AI tools berbeda</div>
+                <div class="line"></div>
+            </div>
+
+            <!-- POSTERS -->
+            <div class="posters">
+
+                <!-- CHATGPT -->
+                <div class="poster glass">
+
+                    <div class="poster-head">
+                        <h3>Poster ChatGPT</h3>
+                        <div class="tag chatgpt-tag">AI Text + Prompt</div>
+                    </div>
+
+                    <div class="preview">
+                        <img src="../hasil_gpt.jpg" alt="Hasil Poster ChatGPT">
+                    </div>
+
+                </div>
+
+                <!-- GEMINI -->
+                <div class="poster glass">
+
+                    <div class="poster-head">
+                        <h3>Poster Gemini</h3>
+                        <div class="tag gemini-tag">AI Visual + Assets</div>
+                    </div>
+
+                    <div class="preview">
+                        <img src="../hasil_gemini.jpg" alt="Hasil Poster Gemini">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- BOTTOM -->
+            <div class="bottom">
+
+                <div class="text-white/45 text-sm">
+                    Powered by AI Technology
+                </div>
+
+                <div class="btns">
+                    <a href="materi4.html" class="btn">
+                        <i class="fas fa-arrow-left mr-2"></i>Previous
+                    </a>
+
+                    <a href="materi6.html" class="btn">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
