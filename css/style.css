@@ -360,9 +360,17 @@ section {
 /* =====================================================
    SPEAKER
 ===================================================== */
-.speaker-content {
-    display: flex;
-    justify-content: center;
+.speaker-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    align-items: stretch;
+}
+
+.speaker-card {
+    width: 100%;
+    max-width: none;
+    text-align: center;
 }
 
 .speaker-card {
